@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter_new/flutter.dart' as charts;
+import 'package:premierhospitaladmin/screens/appointment/add_appointment.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:premierhospitaladmin/utils/colors.dart';
@@ -12,14 +14,46 @@ class Appointment extends StatefulWidget {
 }
 
 class _AppointmentState extends State<Appointment> {
-  List<Employee> employees = <Employee>[];
-  late EmployeeDataSource employeeDataSource;
+  late UserDataSource userDataSource;
+  late List<AppointmentData> UserData = [];
+
+  FirebaseFirestore db = FirebaseFirestore.instance;
+
+  final getDataFromFireStore =
+      FirebaseFirestore.instance.collection('Appointments').snapshots();
+  final Stream<QuerySnapshot> _usersStream =
+      FirebaseFirestore.instance.collection('Appointments').snapshots();
+
+  Widget _buildDataGrid1() {
+    late List<AppointmentData> UserData = [];
+    return StreamBuilder<QuerySnapshot>(
+      stream: _usersStream,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (!snapshot.hasData) return LinearProgressIndicator();
+        UserData.clear();
+        snapshot.data!.docs.forEach((doc) {
+          UserData.add(
+              AppointmentData.fromJson(doc.data() as Map<String, dynamic>));
+        });
+
+        userDataSource = UserDataSource(UserData);
+        return SfDataGrid(
+            columnWidthMode: ColumnWidthMode.fill,
+            source: userDataSource,
+            gridLinesVisibility: GridLinesVisibility.both,
+            headerGridLinesVisibility: GridLinesVisibility.both,
+            allowColumnsResizing: true,
+            allowSorting: true,
+            allowFiltering: true,
+            columns: getColumns);
+      },
+    );
+  }
+
   @override
   void initState() {
-    // TODO: implement initState
-    employees = getEmployeeData();
-    employeeDataSource = EmployeeDataSource(employeeData: employees);
     super.initState();
+    // getDataFromDatabase();
   }
 
   @override
@@ -49,25 +83,31 @@ class _AppointmentState extends State<Appointment> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Container(
-                            color: buttonColor,
-                            height: MediaQuery.of(context).size.height * 0.06,
-                            width: MediaQuery.of(context).size.width * 0.11,
-                            child: Center(
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.add,
-                                    color: Colors.white,
-                                  ),
-                                  Text("Add Appointments",
-                                      style: GoogleFonts.rubik(
-                                          color: Colors.white,
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w400))
-                                ],
-                              ),
-                            )),
+                        GestureDetector(
+                          onTap: (() {
+                            Navigator.pushNamed(
+                                context, AddAppointment.routeName);
+                          }),
+                          child: Container(
+                              color: buttonColor,
+                              height: MediaQuery.of(context).size.height * 0.06,
+                              width: MediaQuery.of(context).size.width * 0.11,
+                              child: Center(
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.add,
+                                      color: Colors.white,
+                                    ),
+                                    Text("Add Appointments",
+                                        style: GoogleFonts.rubik(
+                                            color: Colors.white,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w400))
+                                  ],
+                                ),
+                              )),
+                        ),
                         SizedBox(
                           width: 20,
                         ),
@@ -104,141 +144,79 @@ class _AppointmentState extends State<Appointment> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            SfDataGrid(
-              source: employeeDataSource,
-              gridLinesVisibility: GridLinesVisibility.both,
-              headerGridLinesVisibility: GridLinesVisibility.both,
-              columnWidthMode: ColumnWidthMode.fill,
-              allowColumnsResizing: true,
-              allowSorting: true,
-              allowFiltering: true,
-              columns: <GridColumn>[
-                GridColumn(
-                    columnName: 'id',
-                    label: Container(
-                        padding: EdgeInsets.all(16.0),
-                        alignment: Alignment.center,
-                        color: backgroundColor,
-                        child: Text(
-                          'Patient ID',
-                        ))),
-                GridColumn(
-                    columnName: 'name',
-                    label: Container(
-                        padding: EdgeInsets.all(8.0),
-                        alignment: Alignment.center,
-                        color: backgroundColor,
-                        child: Text('Appt No'))),
-                GridColumn(
-                    columnName: 'designation',
-                    label: Container(
-                        padding: EdgeInsets.all(8.0),
-                        alignment: Alignment.center,
-                        color: backgroundColor,
-                        child: Text(
-                          'Appt Date ',
-                          overflow: TextOverflow.ellipsis,
-                        ))),
-                GridColumn(
-                    columnName: 'salary',
-                    label: Container(
-                        padding: EdgeInsets.all(8.0),
-                        color: backgroundColor,
-                        alignment: Alignment.center,
-                        child: Text('Phone'))),
-                GridColumn(
-                    columnName: 'salary',
-                    label: Container(
-                        padding: EdgeInsets.all(8.0),
-                        color: backgroundColor,
-                        alignment: Alignment.center,
-                        child: Text('doctor'))),
-                GridColumn(
-                    columnName: 'source',
-                    label: Container(
-                        padding: EdgeInsets.all(8.0),
-                        color: backgroundColor,
-                        alignment: Alignment.center,
-                        child: Text('Source'))),
-                GridColumn(
-                    columnName: 'status',
-                    label: Container(
-                        padding: EdgeInsets.all(8.0),
-                        color: backgroundColor,
-                        alignment: Alignment.center,
-                        child: Text('Status'))),
-              ],
-            )
+            _buildDataGrid1()
           ],
         ),
       ))),
     );
   }
+}
 
-  List<Employee> getEmployeeData() {
-    return [
-      Employee(10001, 'James', 'Project Lead', 20000),
-      Employee(10002, 'Kathryn', 'Manager', 30000),
-      Employee(10003, 'Lara', 'Developer', 15000),
-      Employee(10004, 'Michael', 'Designer', 15000),
-      Employee(10005, 'Martin', 'Developer', 15000),
-      Employee(10006, 'Newberry', 'Developer', 15000),
-      Employee(10007, 'Balnc', 'Developer', 15000),
-      Employee(10008, 'Perry', 'Developer', 15000),
-      Employee(10009, 'Gable', 'Developer', 15000),
-      Employee(10010, 'Grimes', 'Developer', 15000)
-    ];
+class AppointmentData {
+  factory AppointmentData.fromJson(Map<String, dynamic> json) {
+    return AppointmentData(
+        PatientId: json['Patient ID'],
+        AptNo: json['Apt No'],
+        ApptDate: json["Appt Date"],
+        Phone: json["Phone"],
+        Doctor: json['Doctor'],
+        Source: json['Source'],
+        Status: json['status']);
   }
+
+  AppointmentData(
+      {required this.PatientId,
+      required this.AptNo,
+      required this.ApptDate,
+      required this.Phone,
+      required this.Doctor,
+      required this.Source,
+      required this.Status});
+
+  final String PatientId;
+
+  final String AptNo;
+
+  final String ApptDate;
+  final String Phone;
+  final String Doctor;
+  final String Source;
+  final String Status;
 }
 
-/// Custom business object class which contains properties to hold the detailed
-/// information about the employee which will be rendered in datagrid.
-class Employee {
-  /// Creates the employee class with required details.
-  Employee(this.id, this.name, this.designation, this.salary);
+class UserDataSource extends DataGridSource {
+  UserDataSource(this._appointmentData) {
+    _buildDataRow();
+  }
 
-  /// Id of an employee.
-  final int id;
+  List<DataGridRow> users = [];
+  List<AppointmentData> _appointmentData;
 
-  /// Name of an employee.
-  final String name;
-
-  /// Designation of an employee.
-  final String designation;
-
-  /// Salary of an employee.
-  final int salary;
-}
-
-/// An object to set the employee collection data source to the datagrid. This
-/// is used to map the employee data to the datagrid widget.
-class EmployeeDataSource extends DataGridSource {
-  /// Creates the employee data source class with required details.
-  EmployeeDataSource({required List<Employee> employeeData}) {
-    _employeeData = employeeData
+  void _buildDataRow() {
+    users = _appointmentData
         .map<DataGridRow>((e) => DataGridRow(cells: [
-              DataGridCell<int>(columnName: 'id', value: e.id),
-              DataGridCell<String>(columnName: 'name', value: e.name),
               DataGridCell<String>(
-                  columnName: 'designation', value: e.designation),
-              DataGridCell<int>(columnName: 'salary', value: e.salary),
-              DataGridCell<String>(columnName: 'doctor', value: e.name),
-              DataGridCell<String>(columnName: 'source', value: e.designation),
-              DataGridCell<int>(columnName: 'status', value: e.id),
+                  columnName: 'Patient ID', value: e.PatientId),
+              DataGridCell<String>(columnName: 'Apt No', value: e.AptNo),
+              DataGridCell<String>(columnName: 'Appt Date', value: e.ApptDate),
+              DataGridCell<String>(columnName: 'Phone', value: e.Phone),
+              DataGridCell<String>(columnName: "Doctor", value: e.Doctor),
+              DataGridCell<String>(columnName: "Source", value: e.Source),
+              DataGridCell<String>(columnName: "Status", value: e.Status)
             ]))
         .toList();
   }
 
-  List<DataGridRow> _employeeData = [];
+  @override
+  List<DataGridRow> get rows => users;
 
   @override
-  List<DataGridRow> get rows => _employeeData;
-
-  @override
-  DataGridRowAdapter buildRow(DataGridRow row) {
+  DataGridRowAdapter buildRow(
+    DataGridRow row,
+  ) {
     return DataGridRowAdapter(
         cells: row.getCells().map<Widget>((e) {
       return Container(
@@ -248,4 +226,63 @@ class EmployeeDataSource extends DataGridSource {
       );
     }).toList());
   }
+}
+
+List<GridColumn> get getColumns {
+  return <GridColumn>[
+    GridColumn(
+        columnName: 'Patient ID',
+        label: Container(
+            padding: EdgeInsets.all(16.0),
+            alignment: Alignment.center,
+            color: backgroundColor,
+            child: Text(
+              'Patient ID',
+            ))),
+    GridColumn(
+        columnName: 'Apt No',
+        label: Container(
+            padding: EdgeInsets.all(8.0),
+            alignment: Alignment.center,
+            color: backgroundColor,
+            child: Text('Apt No'))),
+    GridColumn(
+        columnName: 'Appt Date',
+        label: Container(
+            padding: EdgeInsets.all(8.0),
+            alignment: Alignment.center,
+            color: backgroundColor,
+            child: Text(
+              'Appt Date',
+              overflow: TextOverflow.ellipsis,
+            ))),
+    GridColumn(
+        columnName: 'Phone',
+        label: Container(
+            padding: EdgeInsets.all(8.0),
+            alignment: Alignment.center,
+            color: backgroundColor,
+            child: Text('Phone'))),
+    GridColumn(
+        columnName: 'Doctor',
+        label: Container(
+            padding: EdgeInsets.all(8.0),
+            alignment: Alignment.center,
+            color: backgroundColor,
+            child: Text('Doctor'))),
+    GridColumn(
+        columnName: 'Source',
+        label: Container(
+            padding: EdgeInsets.all(8.0),
+            alignment: Alignment.center,
+            color: backgroundColor,
+            child: Text('Source'))),
+    GridColumn(
+        columnName: 'Status',
+        label: Container(
+            padding: EdgeInsets.all(8.0),
+            alignment: Alignment.center,
+            color: backgroundColor,
+            child: Text('Status'))),
+  ];
 }

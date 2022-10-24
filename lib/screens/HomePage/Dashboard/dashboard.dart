@@ -89,17 +89,7 @@ class _DashBoardState extends State<DashBoard> {
       Sales(5, 60),
     ];
 
-    // _seriesData.add(
-    //   charts.Series(
-    //     domainFn: (Pollution pollution, _) => pollution.place,
-    //     measureFn: (Pollution pollution, _) => pollution.quantity,
-    //     id: '2017',
-    //     data: data1,
-    //     fillPatternFn: (_, __) => charts.FillPatternType.solid,
-    //     fillColorFn: (Pollution pollution, _) =>
-    //         charts.ColorUtil.fromDartColor(Color(0xff990099)),
-    //   ),
-    // );
+  
 
     _seriesData.add(
       charts.Series(

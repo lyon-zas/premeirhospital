@@ -7,77 +7,65 @@ import '../provider/user_provider.dart';
 import '../utils/utils.dart';
 import 'storage_method.dart';
 
-
 class FirestoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final StorageMethods _storageMethods = StorageMethods();
 
-  // Future<String> startLiveStream(
-  //     BuildContext context, String title, Uint8List? image) async {
-  //   final user = Provider.of<UserProvider>(context, listen: false);
-  //   String channelId = '';
-  //   try {
-  //     if (title.isNotEmpty && image != null) {
-  //       if (!((await _firestore
-  //               .collection('livestream')
-  //               .doc('${user.user.uid}${user.user.name}')
-  //               .get())
-  //           .exists)) {
-  //         String thumbnailUrl = await _storageMethods.uploadImageToStorage(
-  //           'livestream-thumbnails',
-  //           image,
-  //           user.user.uid,
-  //         );
-  //         channelId = '${user.user.uid}${user.user.name}';
+  Future<void> addPatient(
+      String dOb,
+      String email,
+      String firstname,
+      String lastname,
+      String gender,
+      String phone,
+      BuildContext context) async {
+    final user = Provider.of<UserProvider>(context, listen: false);
 
-  //         LiveStream liveStream = LiveStream(
-  //           title: title,
-  //           image: thumbnailUrl,
-  //           uid: user.user.uid,
-  //           name: user.user.name,
-  //           viewers: 0,
-  //           channelId: channelId,
-  //           startedAt: DateTime.now(),
-  //         );
+    try {
+      await _firestore.collection('Patients').doc().set({
+        'Date of birth': dOb,
+        'Email': email,
+        'First Name': firstname,
+        'Gender': gender,
+        'Last Name': lastname,
+        'Patient id': "ph${1003}",
+        'Phone Number': phone,
+        'status': "active",
+      });
+    } on FirebaseException catch (e) {
+      showSnackBar(context, e.message!);
+    }
+  }
 
-  //         _firestore
-  //             .collection('livestream')
-  //             .doc(channelId)
-  //             .set(liveStream.toMap());
-  //       } else {
-  //         showSnackBar(
-  //             context, 'Two Livestreams cannot start at the same time.');
-  //       }
-  //     } else {
-  //       showSnackBar(context, 'Please enter all the fields');
-  //     }
-  //   } on FirebaseException catch (e) {
-  //     showSnackBar(context, e.message!);
-  //   }
-  //   return channelId;
-  // }
+  Future<void> addAppoinment(
+      String date,
+      // String aptNo,
+      String doctor,
+      String patientId,
+      String slot,
+      String phone,
+      String paymentmode,
+      String appoinmentType,
+      BuildContext context) async {
+    final user = Provider.of<UserProvider>(context, listen: false);
 
-  // Future<void> chat(String text, String id, BuildContext context) async {
-  //   final user = Provider.of<UserProvider>(context, listen: false);
-
-  //   try {
-  //     String commentId = const Uuid().v1();
-  //     await _firestore
-  //         .collection('livestream')
-  //         .doc(id)
-  //         .collection('comments')
-  //         .doc(commentId)
-  //         .set({
-  //       'name': user.user.name,
-  //       'message': text,
-  //       'uid': user.user.uid,
-  //       'createdAt': DateTime.now(),
-  //       'commentId': commentId,
-  //     });
-  //   } on FirebaseException catch (e) {
-  //     showSnackBar(context, e.message!);
-  //   }
-  // }
+    try {
+      await _firestore.collection('Appointments').doc().set({
+        'Appt Date': date,
+        'Apt No': '112',
+        'Doctor': doctor,
+        'Patient ID': patientId,
+        'Source': "admin web",
+        'Phone': phone,
+        'status': "pending",
+        'slot': slot,
+        'paymentmode': paymentmode,
+        'appoinmentType': appoinmentType
+      });
+    } on FirebaseException catch (e) {
+      showSnackBar(context, e.message!);
+    }
+  }
 
   Future<void> updateViewCount(String id, bool isIncrease) async {
     try {
@@ -113,3 +101,5 @@ class FirestoreMethods {
     }
   }
 }
+
+// DateTime.now(),

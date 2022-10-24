@@ -6,6 +6,7 @@ import 'package:premierhospitaladmin/provider/user_provider.dart';
 import 'package:premierhospitaladmin/screens/Auth/forgot_password.dart';
 import 'package:premierhospitaladmin/screens/Auth/login_screen.dart';
 import 'package:premierhospitaladmin/screens/Auth/resetlink.dart';
+import 'package:premierhospitaladmin/screens/appointment/add_appointment.dart';
 import 'package:premierhospitaladmin/screens/patient/app_patient.dart';
 import 'package:premierhospitaladmin/utils/colors.dart';
 import 'package:provider/provider.dart';
@@ -68,7 +69,7 @@ class MyApp extends StatelessWidget {
         ResetLink.routeName: (context) => const ResetLink(),
         AddPatient.routeName: (context) => const AddPatient(),
         HomePage.routeName: (context) => const HomePage(),
-        // WebRegister.routeName: (context) => const WebRegister()
+        AddAppointment.routeName: (context) => const AddAppointment()
       },
       home: FutureBuilder(
         future: AuthMethods()
