@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:premierhospitaladmin/screens/report/expense_report.dart';
+import 'package:premierhospitaladmin/screens/report/perfromance_report.dart';
+import 'package:premierhospitaladmin/screens/report/usage_repart.dart';
 import 'package:premierhospitaladmin/utils/colors.dart';
 import 'package:charts_flutter_new/flutter.dart' as charts;
 
@@ -212,7 +215,8 @@ class _ReportState extends State<Report> {
                                     color: Colors.white,
                                   )),
                               onTap: () {
-                                // onIndexChanged(1);
+                                Navigator.pushNamed(
+                                    context, ExpenseReport.routeName);
                               },
                             ),
                           ),
@@ -271,7 +275,8 @@ class _ReportState extends State<Report> {
                                     color: Colors.white,
                                   )),
                               onTap: () {
-                                // onIndexChanged(1);
+                                Navigator.pushNamed(
+                                    context, PerformanceMetric.routeName);
                               },
                             ),
                           ),
@@ -316,7 +321,8 @@ class _ReportState extends State<Report> {
                                     color: Colors.white,
                                   )),
                               onTap: () {
-                                // onIndexChanged(1);
+                                Navigator.pushNamed(
+                                    context, UsageReport.routeName);
                               },
                             ),
                           ),
@@ -452,101 +458,99 @@ class _ReportState extends State<Report> {
                               Container(
                                 color: Colors.white,
                                 padding: EdgeInsets.all(20.0),
-                                child: Expanded(
-                                  child: Table(
-                                      border: TableBorder
-                                          .all(), // Allows to add a border decoration around your table
-                                      children: const [
-                                        TableRow(children: [
-                                          Text('User/Status'),
-                                          Text('First Time'),
-                                          Text('Follow-up'),
-                                          Center(child: Text('Total')),
-                                        ]),
-                                        TableRow(children: [
-                                          Text(
-                                            'Admin Name',
-                                          ),
-                                          Text('3'),
-                                          Text('3'),
-                                          Text('6'),
-                                        ]),
-                                        TableRow(children: [
-                                          Text('Unconfirmed'),
-                                          Text('4'),
-                                          Text('3'),
-                                          Text('7'),
-                                        ]),
-                                        TableRow(children: [
-                                          Text('Confirmed'),
-                                          Text('4'),
-                                          Text('6'),
-                                          Text('10'),
-                                        ]),
-                                        TableRow(children: [
-                                          Text('Completed'),
-                                          Text('3'),
-                                          Text('7'),
-                                          Text('10'),
-                                        ]),
-                                        TableRow(children: [
-                                          Text('Cancelled'),
-                                          Text('3'),
-                                          Text('0'),
-                                          Text('3'),
-                                        ]),
+                                child: Table(
+                                    border: TableBorder
+                                        .all(), // Allows to add a border decoration around your table
+                                    children: const [
+                                      TableRow(children: [
+                                        Text('User/Status'),
+                                        Text('First Time'),
+                                        Text('Follow-up'),
+                                        Center(child: Text('Total')),
                                       ]),
-                                ),
+                                      TableRow(children: [
+                                        Text(
+                                          'Admin Name',
+                                        ),
+                                        Text('3'),
+                                        Text('3'),
+                                        Text('6'),
+                                      ]),
+                                      TableRow(children: [
+                                        Text('Unconfirmed'),
+                                        Text('4'),
+                                        Text('3'),
+                                        Text('7'),
+                                      ]),
+                                      TableRow(children: [
+                                        Text('Confirmed'),
+                                        Text('4'),
+                                        Text('6'),
+                                        Text('10'),
+                                      ]),
+                                      TableRow(children: [
+                                        Text('Completed'),
+                                        Text('3'),
+                                        Text('7'),
+                                        Text('10'),
+                                      ]),
+                                      TableRow(children: [
+                                        Text('Cancelled'),
+                                        Text('3'),
+                                        Text('0'),
+                                        Text('3'),
+                                      ]),
+                                    ]),
                               ),
-                              SizedBox(height: 15,),
+                              SizedBox(
+                                height: 15,
+                              ),
                               Container(
                                 color: Colors.white,
                                 padding: EdgeInsets.all(20.0),
-                                child: Expanded(
-                                  child: Table(
-                                      border: TableBorder
-                                          .all(), // Allows to add a border decoration around your table
-                                      children: const [
-                                        TableRow(children: [
-                                          Text('User/Status'),
-                                          Text('First Time'),
-                                          Text('Follow-up'),
-                                          Center(child: Text('Total')),
-                                        ]),
-                                        TableRow(children: [
-                                          Text(
-                                            'Admin Name',
-                                          ),
-                                          Text('3'),
-                                          Text('3'),
-                                          Text('6'),
-                                        ]),
-                                        TableRow(children: [
-                                          Text('Unconfirmed'),
-                                          Text('4'),
-                                          Text('3'),
-                                          Text('7'),
-                                        ]),
-                                        TableRow(children: [
-                                          Text('Confirmed'),
-                                          Text('4'),
-                                          Text('6'),
-                                          Text('10'),
-                                        ]),
-                                        TableRow(children: [
-                                          Text('Completed'),
-                                          Text('3'),
-                                          Text('7'),
-                                          Text('10'),
-                                        ]),
-                                        TableRow(children: [
-                                          Text('Cancelled'),
-                                          Text('3'),
-                                          Text('0'),
-                                          Text('3'),
-                                        ]),
+                                child: Table(
+                                    border: TableBorder
+                                        .all(), // Allows to add a border decoration around your table
+                                    children: const [
+                                      TableRow(children: [
+                                        Text('User/Status'),
+                                        Text('First Time'),
+                                        Text('Follow-up'),
+                                        Center(child: Text('Total')),
                                       ]),
-                                ),
+                                      TableRow(children: [
+                                        Text(
+                                          'Admin Name',
+                                        ),
+                                        Text('3'),
+                                        Text('3'),
+                                        Text('6'),
+                                      ]),
+                                      TableRow(children: [
+                                        Text('Unconfirmed'),
+                                        Text('4'),
+                                        Text('3'),
+                                        Text('7'),
+                                      ]),
+                                      TableRow(children: [
+                                        Text('Confirmed'),
+                                        Text('4'),
+                                        Text('6'),
+                                        Text('10'),
+                                      ]),
+                                      TableRow(children: [
+                                        Text('Completed'),
+                                        Text('3'),
+                                        Text('7'),
+                                        Text('10'),
+                                      ]),
+                                      TableRow(children: [
+                                        Text('Cancelled'),
+                                        Text('3'),
+                                        Text('0'),
+                                        Text('3'),
+                                      ]),
+                                    ]),
                               )
                             ],
                           ),
