@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:premierhospitaladmin/screens/report/appoinment_report.dart';
+import 'package:premierhospitaladmin/screens/report/audit_report.dart';
 import 'package:premierhospitaladmin/screens/report/expense_report.dart';
+import 'package:premierhospitaladmin/screens/report/financial_report.dart';
+import 'package:premierhospitaladmin/screens/report/patient_report.dart';
 import 'package:premierhospitaladmin/screens/report/perfromance_report.dart';
 import 'package:premierhospitaladmin/screens/report/usage_repart.dart';
 import 'package:premierhospitaladmin/utils/colors.dart';
@@ -194,7 +198,8 @@ class _ReportState extends State<Report> {
                                     color: Colors.white,
                                   )),
                               onTap: () {
-                                // onIndexChanged(1);
+                                Navigator.pushNamed(
+                                    context, FinancialReport.routeName);
                               },
                             ),
                           ),
@@ -235,31 +240,32 @@ class _ReportState extends State<Report> {
                                     color: Colors.white,
                                   )),
                               onTap: () {
-                                // onIndexChanged(1);
+                                Navigator.pushNamed(
+                                    context, AppoinmentReport.routeName);
                               },
                             ),
                           ),
                         ),
-                        Container(
-                          color: primaryColor,
-                          height: 45,
-                          width: MediaQuery.of(context).size.width / 7,
-                          child: Center(
-                            child: ListTile(
-                              // selected: selectedIndex == 1,
-                              iconColor: Colors.white,
-                              leading: FaIcon(FontAwesomeIcons.calendarCheck),
-                              title: const Text("Appointment Report",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  )),
-                              onTap: () {
-                                // onIndexChanged(1);
-                              },
-                            ),
-                          ),
-                        ),
+                        // Container(
+                        //   color: primaryColor,
+                        //   height: 45,
+                        //   width: MediaQuery.of(context).size.width / 7,
+                        //   child: Center(
+                        //     child: ListTile(
+                        //       // selected: selectedIndex == 1,
+                        //       iconColor: Colors.white,
+                        //       leading: FaIcon(FontAwesomeIcons.calendarCheck),
+                        //       title: const Text("Appointment Report",
+                        //           textAlign: TextAlign.center,
+                        //           style: TextStyle(
+                        //             color: Colors.white,
+                        //           )),
+                        //       onTap: () {
+                        //         // onIndexChanged(1);
+                        //       },
+                        //     ),
+                        //   ),
+                        // ),
                         Container(
                           color: primaryColor,
                           height: 50,
@@ -301,7 +307,8 @@ class _ReportState extends State<Report> {
                                     color: Colors.white,
                                   )),
                               onTap: () {
-                                // onIndexChanged(1);
+                                Navigator.pushNamed(
+                                    context, PatientReport.routeName);
                               },
                             ),
                           ),
@@ -342,7 +349,8 @@ class _ReportState extends State<Report> {
                                     color: Colors.white,
                                   )),
                               onTap: () {
-                                // onIndexChanged(1);
+                                Navigator.pushNamed(
+                                    context, AuditReport.routeName);
                               },
                             ),
                           ),

@@ -31,6 +31,7 @@ class FirestoreMethods {
         'Patient id': "ph${1003}",
         'Phone Number': phone,
         'status': "active",
+        'Date of Creation': DateTime.now()
       });
     } on FirebaseException catch (e) {
       showSnackBar(context, e.message!);

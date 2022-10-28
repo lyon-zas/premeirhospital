@@ -2,6 +2,8 @@ import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:premierhospitaladmin/screens/Auth/forgot_password.dart';
+import 'package:premierhospitaladmin/screens/HomePage/profile.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/controller.dart';
@@ -159,13 +161,19 @@ class ProfileCard extends StatelessWidget {
                                   ),
                                   Column(
                                     children: [
-                                      CircleAvatar(
-                                        radius: 30,
-                                        child: Center(
-                                          child: Image.asset(
-                                            "assets/image 52.png",
-                                            height: 60,
-                                            fit: BoxFit.fill,
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                              context, Profile.routeName);
+                                        },
+                                        child: CircleAvatar(
+                                          radius: 30,
+                                          child: Center(
+                                            child: Image.asset(
+                                              "assets/image 52.png",
+                                              height: 60,
+                                              fit: BoxFit.fill,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -192,36 +200,51 @@ class ProfileCard extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Row(
-                                    children: [
-                                      Row(
-                                        children: const [
-                                          Icon(Icons.account_box),
-                                          Text("My Account")
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Row(
-                                        children: const [
-                                          Icon(Icons.settings),
-                                          Text("Settings")
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Row(
-                                        children: const [
-                                          Icon(Icons.key),
-                                          Text("Change password")
-                                        ],
-                                      )
-                                    ],
-                                  )
+                                  TextButton.icon(
+                                      onPressed: () => Navigator.pushNamed(
+                                          context, Profile.routeName),
+                                      icon: Icon(Icons.account_box,
+                                          color: Colors.black),
+                                      label: Text(
+                                        "My Account",
+                                        style: TextStyle(color: Colors.black),
+                                      )),
+                                  // Row(
+                                  //   children: const [
+                                  //     Icon(Icons.account_box),
+                                  //     Text("My Account")
+                                  //   ],
+                                  // ),
+                                  TextButton.icon(
+                                      onPressed: () => Navigator.pushNamed(
+                                          context, Profile.routeName),
+                                      icon: Icon(Icons.settings,
+                                          color: Colors.black),
+                                      label: Text(
+                                        "Settings",
+                                        style: TextStyle(color: Colors.black),
+                                      )),
+                                  // Row(
+                                  //   children: const [
+                                  //     Icon(Icons.settings),
+                                  //     Text("Settings")
+                                  //   ],
+                                  // ),
+                                  TextButton.icon(
+                                      onPressed: () => Navigator.pushNamed(
+                                          context, ForgotPassword.routeName),
+                                      icon:
+                                          Icon(Icons.key, color: Colors.black),
+                                      label: Text(
+                                        "Change password",
+                                        style: TextStyle(color: Colors.black),
+                                      )),
+                                  // Row(
+                                  //   children: const [
+                                  //     Icon(Icons.key),
+                                  //     Text("Change password")
+                                  //   ],
+                                  // )
                                 ],
                               )
                             ],

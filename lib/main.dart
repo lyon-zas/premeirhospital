@@ -6,9 +6,13 @@ import 'package:premierhospitaladmin/provider/user_provider.dart';
 import 'package:premierhospitaladmin/screens/Auth/forgot_password.dart';
 import 'package:premierhospitaladmin/screens/Auth/login_screen.dart';
 import 'package:premierhospitaladmin/screens/Auth/resetlink.dart';
+import 'package:premierhospitaladmin/screens/HomePage/profile.dart';
 import 'package:premierhospitaladmin/screens/appointment/add_appointment.dart';
 import 'package:premierhospitaladmin/screens/patient/app_patient.dart';
+import 'package:premierhospitaladmin/screens/report/appoinment_report.dart';
 import 'package:premierhospitaladmin/screens/report/expense_report.dart';
+import 'package:premierhospitaladmin/screens/report/financial_report.dart';
+import 'package:premierhospitaladmin/screens/report/patient_report.dart';
 import 'package:premierhospitaladmin/screens/report/perfromance_report.dart';
 import 'package:premierhospitaladmin/screens/report/usage_repart.dart';
 import 'package:premierhospitaladmin/utils/colors.dart';
@@ -16,6 +20,7 @@ import 'package:provider/provider.dart';
 
 import 'firebase_resources/auth_method.dart';
 import 'screens/HomePage/home_screen.dart';
+import 'screens/report/audit_report.dart';
 import 'utils/loading_indicator.dart';
 
 void main() async {
@@ -76,6 +81,11 @@ class MyApp extends StatelessWidget {
         PerformanceMetric.routeName: (context) => const PerformanceMetric(),
         UsageReport.routeName: (context) => const UsageReport(),
         ExpenseReport.routeName: (context) => const ExpenseReport(),
+        FinancialReport.routeName: (context) => const FinancialReport(),
+        AuditReport.routeName: (context) => const AuditReport(),
+        AppoinmentReport.routeName: (context) => const AppoinmentReport(),
+        PatientReport.routeName: (context) => const PatientReport(),
+        Profile.routeName: (context) => const Profile(),
       },
       home: FutureBuilder(
         future: AuthMethods()
