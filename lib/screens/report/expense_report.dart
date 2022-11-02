@@ -175,12 +175,16 @@ class _ExpenseReportState extends State<ExpenseReport> {
                                     
                                   ]),
                               const TableRow(
-                                decoration: const BoxDecoration(
+                                decoration:  BoxDecoration(
                                     color: Color(0xFFB3B3B3),
                                   ),
                                 children: [
                                 Text(
-                                  '',
+                                  'Bedspace',
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  'In239bi90',
                                   textAlign: TextAlign.center,
                                 ),
                                 Text(
@@ -188,7 +192,26 @@ class _ExpenseReportState extends State<ExpenseReport> {
                                   textAlign: TextAlign.center,
                                 ),
                                 Text(
-                                  '',
+                                  '20/11/2022',
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  '8000',
+                                  textAlign: TextAlign.center,
+                                ),
+                                
+                              ]),
+                               const TableRow(
+                                decoration:  BoxDecoration(
+                                    color: Color(0xFFB3B3B3),
+                                  ),
+                                children: [
+                                Text(
+                                  'Meidcal Equipment',
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  'In29870',
                                   textAlign: TextAlign.center,
                                 ),
                                 Text(
@@ -196,7 +219,65 @@ class _ExpenseReportState extends State<ExpenseReport> {
                                   textAlign: TextAlign.center,
                                 ),
                                 Text(
+                                  '20/11/2022',
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  '1000',
+                                  textAlign: TextAlign.center,
+                                ),
+                                
+                              ]),
+                               const TableRow(
+                                decoration:  BoxDecoration(
+                                    color: Color(0xFFB3B3B3),
+                                  ),
+                                children: [
+                                Text(
+                                  'ultrasound Machine',
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  'In28970',
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
                                   '',
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  '20/8/2022',
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  '30000',
+                                  textAlign: TextAlign.center,
+                                ),
+                                
+                              ]),
+                               const TableRow(
+                                decoration:  BoxDecoration(
+                                    color: Color(0xFFB3B3B3),
+                                  ),
+                                children: [
+                                Text(
+                                  'X-ray Machine',
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  'In082028',
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  '',
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  '20/09/2022',
+                                  textAlign: TextAlign.center,
+                                ),
+                                Text(
+                                  '900',
                                   textAlign: TextAlign.center,
                                 ),
                                 

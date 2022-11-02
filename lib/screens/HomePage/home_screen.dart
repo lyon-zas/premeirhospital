@@ -57,22 +57,22 @@ class _HomePageState extends State<HomePage> {
                         return const Patient();
                       }
                       if (selectedIndex == 2) {
-                        return const Appointment();
+                        return const AppointmentPage();
                       }
                       if (selectedIndex == 3) {
-                        return const Recources();
-                      }
-                      if (selectedIndex == 4) {
                         return const Inventory();
                       }
-                      if (selectedIndex == 5) {
+                      if (selectedIndex == 4) {
                         return const Payment();
                       }
-                      if (selectedIndex == 6) {
+                      if (selectedIndex == 5) {
                         return const Report();
                       }
-                      if (selectedIndex == 7) {
+                      if (selectedIndex == 6) {
                         return const Calender();
+                      }
+                      if (selectedIndex == 7) {
+                        return const Recources();
                       }
                       if (selectedIndex == 8) {
                         return Container();

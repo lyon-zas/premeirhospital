@@ -101,7 +101,7 @@ class SideMenu extends StatelessWidget {
                       ),
                       child: ListTile(
                         selected: selectedIndex == 3,
-                        title: const Text("Resource",
+                        title: const Text("Inventory",
                             style: TextStyle(
                               color: Colors.white,
                             )),
@@ -122,7 +122,7 @@ class SideMenu extends StatelessWidget {
                       ),
                       child: ListTile(
                         selected: selectedIndex == 4,
-                        title: const Text("Inventory",
+                        title: const Text("Payment",
                             style: TextStyle(
                               color: Colors.white,
                             )),
@@ -143,7 +143,7 @@ class SideMenu extends StatelessWidget {
                       ),
                       child: ListTile(
                         selected: selectedIndex == 5,
-                        title: const Text("Payment",
+                        title: const Text("Report",
                             style: TextStyle(
                               color: Colors.white,
                             )),
@@ -164,7 +164,7 @@ class SideMenu extends StatelessWidget {
                       ),
                       child: ListTile(
                         selected: selectedIndex == 6,
-                        title: const Text("Report",
+                        title: const Text("Calendar",
                             style: TextStyle(
                               color: Colors.white,
                             )),
@@ -185,7 +185,7 @@ class SideMenu extends StatelessWidget {
                       ),
                       child: ListTile(
                         selected: selectedIndex == 7,
-                        title: const Text("Calendar",
+                        title: const Text("Resource",
                             style: TextStyle(
                               color: Colors.white,
                             )),

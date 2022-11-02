@@ -132,7 +132,8 @@ class CurrentUserInfo {
         Phonenumber: json["Phone Number"],
         Gender: json['Gender'],
         Status: json['status'],
-        DOB: json['Date of birth']);
+        DOB: json['Date of birth'],
+        email: json['Email']);
   }
 
   CurrentUserInfo(
@@ -142,7 +143,8 @@ class CurrentUserInfo {
       required this.LastName,
       required this.DOB,
       required this.Gender,
-      required this.Status});
+      required this.Status,
+      required this.email});
 
 //   }
   final String PatientId;
@@ -156,6 +158,7 @@ class CurrentUserInfo {
   final String DOB;
   final String Gender;
   final String Status;
+  final String email;
 }
 
 class UserDataSource extends DataGridSource {
@@ -177,7 +180,8 @@ class UserDataSource extends DataGridSource {
               DataGridCell<String>(columnName: 'Date of Birth', value: e.DOB),
               DataGridCell<String>(columnName: "Gender", value: e.Gender),
               DataGridCell<String>(columnName: "Phone", value: e.Phonenumber),
-              DataGridCell<String>(columnName: "Status", value: e.Status)
+              DataGridCell<String>(columnName: "Status", value: e.Status),
+              DataGridCell<String>(columnName: "Email", value: e.email)
             ]))
         .toList();
   }
@@ -203,7 +207,6 @@ class UserDataSource extends DataGridSource {
 List<GridColumn> get getColumns {
   return <GridColumn>[
     GridColumn(
-      
         columnName: 'Patient ID',
         label: Container(
             padding: EdgeInsets.all(16.0),
@@ -257,5 +260,12 @@ List<GridColumn> get getColumns {
             color: backgroundColor,
             alignment: Alignment.center,
             child: Text('Status'))),
+     GridColumn(
+        columnName: 'Email',
+        label: Container(
+            padding: EdgeInsets.all(8.0),
+            color: backgroundColor,
+            alignment: Alignment.center,
+            child: Text('Email'))),
   ];
 }

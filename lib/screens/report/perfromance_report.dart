@@ -22,7 +22,7 @@ class _PerformanceMetricState extends State<PerformanceMetric> {
   List<String> deparment = [
     'All',
     'Gynecology Clinic',
-    'FemNutrition Clinicale',
+    'FemNutrition Clinic',
     'Urology Clinic',
     'Surgical Clinic',
     'Breast Clinic',
@@ -327,6 +327,68 @@ class _PerformanceMetricState extends State<PerformanceMetric> {
                                     Center(
                                         child: Text(
                                       'Completed appointments',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.rubik(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700),
+                                    )),
+                                  ]),
+                                  TableRow(
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFB3B3B3),
+                                  ),
+                                  children: [
+                                    Text(
+                                      'Gynecology',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.rubik(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Text(
+                                      'Gynecology Clinic',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.rubik(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Center(
+                                        child: Text(
+                                      '23000',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.rubik(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700),
+                                    )),
+                                  ]),
+                                  TableRow(
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFB3B3B3),
+                                  ),
+                                  children: [
+                                    Text(
+                                      'FemNutrition',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.rubik(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Text(
+                                      'FemNutrition Clinic',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.rubik(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                    Center(
+                                        child: Text(
+                                      '42',
                                       textAlign: TextAlign.center,
                                       style: GoogleFonts.rubik(
                                           color: Colors.black,

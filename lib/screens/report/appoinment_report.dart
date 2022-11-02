@@ -11,6 +11,8 @@ import 'package:syncfusion_flutter_xlsio/xlsio.dart'
 import '../../utils/save_file_mobile_desktop.dart'
     if (dart.library.html) '../../utils/save_file_web.dart' as helper;
 import '../../utils/colors.dart';
+import '../HomePage/Dashboard/dashboard.dart';
+import 'package:charts_flutter_new/flutter.dart' as charts;
 import '../patient/patient.dart';
 
 class AppoinmentReport extends StatefulWidget {
@@ -38,7 +40,7 @@ class _AppoinmentReportState extends State<AppoinmentReport> {
     'Unconfirmed',
     'Cancelled'
   ];
-   Future<void> exportDataGridToPdf() async {
+  Future<void> exportDataGridToPdf() async {
     final PdfDocument document = _key.currentState!.exportToPdfDocument(
         fitAllColumnsInOnePage: true,
         cellExport: (details) {
@@ -408,7 +410,7 @@ class _AppoinmentReportState extends State<AppoinmentReport> {
             Card(
               elevation: 10,
               child: Container(
-                  height: MediaQuery.of(context).size.height / 1.7,
+                  height: MediaQuery.of(context).size.height / 1.1,
                   color: Colors.white,
                   child: selectedWidget),
             )
@@ -501,85 +503,7 @@ class Tables extends StatelessWidget {
         ),
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: _buildDataGrid1()
-            // Table(
-            //     border: TableBorder
-            //         .all(), // Allows to add a border decoration around your table
-            //     children: [
-            //       TableRow(
-            //           decoration: const BoxDecoration(
-            //             color: Color(0xFFB3B3B3),
-            //           ),
-            //           children: [
-            //             Text(
-            //               'Appoinment Status',
-            //               textAlign: TextAlign.center,
-            //               style: GoogleFonts.rubik(
-            //                   color: Colors.black,
-            //                   fontSize: 16,
-            //                   fontWeight: FontWeight.w700),
-            //             ),
-            //             Text(
-            //               'First Time',
-            //               textAlign: TextAlign.center,
-            //               style: GoogleFonts.rubik(
-            //                   color: Colors.black,
-            //                   fontSize: 16,
-            //                   fontWeight: FontWeight.w700),
-            //             ),
-            //             Text(
-            //               'Follow-up',
-            //               textAlign: TextAlign.center,
-            //               style: GoogleFonts.rubik(
-            //                   color: Colors.black,
-            //                   fontSize: 16,
-            //                   fontWeight: FontWeight.w700),
-            //             ),
-            //             Text(
-            //               'Total',
-            //               textAlign: TextAlign.center,
-            //               style: GoogleFonts.rubik(
-            //                   color: Colors.black,
-            //                   fontSize: 16,
-            //                   fontWeight: FontWeight.w700),
-            //             ),
-            //           ]),
-            //       TableRow(children: [
-            //         Text(
-            //           '',
-            //           textAlign: TextAlign.center,
-            //           style: GoogleFonts.rubik(
-            //               color: Colors.black,
-            //               fontSize: 16,
-            //               fontWeight: FontWeight.w700),
-            //         ),
-            //         Text(
-            //           '',
-            //           textAlign: TextAlign.center,
-            //           style: GoogleFonts.rubik(
-            //               color: Colors.black,
-            //               fontSize: 16,
-            //               fontWeight: FontWeight.w700),
-            //         ),
-            //         Text(
-            //           '',
-            //           textAlign: TextAlign.center,
-            //           style: GoogleFonts.rubik(
-            //               color: Colors.black,
-            //               fontSize: 16,
-            //               fontWeight: FontWeight.w700),
-            //         ),
-            //         Text(
-            //           '',
-            //           textAlign: TextAlign.center,
-            //           style: GoogleFonts.rubik(
-            //               color: Colors.black,
-            //               fontSize: 16,
-            //               fontWeight: FontWeight.w700),
-            //         ),
-            //       ]),
-            //     ]),
-            ),
+            child: _buildDataGrid1()),
       ],
     );
   }
@@ -695,10 +619,64 @@ List<GridColumn> get getColumns {
   ];
 }
 
-class Columns extends StatelessWidget {
+class Columns extends StatefulWidget {
   const Columns({super.key});
 
   @override
+  State<Columns> createState() => _ColumnsState();
+}
+
+class _ColumnsState extends State<Columns> {
+  // late List<charts.Series<Appointments, String>> _seriesData;
+  late List<charts.Series<Income, String>> _seriesPieData;
+
+  _generateData() {
+    // appointments per week
+    // new patients
+    var data2 = [
+      Appointments(1985, '0', 800), // week 1
+      Appointments(1980, '1', 600), // week 2
+      Appointments(1985, '2', 900), // week 2
+      Appointments(1980, '3', 755),
+      Appointments(1985, '4', 255),
+      Appointments(1980, '5', 1000),
+      Appointments(1980, '6', 300),
+      Appointments(1980, '7', 900),
+      Appointments(1980, '8', 790),
+      Appointments(1980, '9', 300),
+    ];
+
+    var piedata = [
+      Income('Unconfirmed', 35, const Color(0xffFFBE18)),
+      Income('Cancel', 5, const Color(0xffFF4E02)),
+      Income('Confirmed', 45, const Color(0xFF17A1FA)),
+      Income('Conpleted', 75, const Color(0xff0BF7B0)),
+    ];
+
+    _seriesPieData.add(
+      charts.Series(
+        domainFn: (Income task, _) => task.income,
+        measureFn: (Income task, _) => task.incomevalue,
+        colorFn: (Income task, _) =>
+            charts.ColorUtil.fromDartColor(task.colorval),
+        id: 'Appointment ',
+        data: piedata,
+        labelAccessorFn: (Income row, _) => '${row.incomevalue}',
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // _seriesData = <charts.Series<Appointments, String>>[];
+    _seriesPieData = <charts.Series<Income, String>>[];
+
+    _generateData();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -727,15 +705,86 @@ class Columns extends StatelessWidget {
             ),
           ),
         ),
+        Expanded(
+          child: charts.BarChart(
+            _seriesPieData,
+            animate: true,
+            barGroupingType: charts.BarGroupingType.grouped,
+            behaviors: [
+              charts.SeriesLegend(
+                position: charts.BehaviorPosition.bottom,
+                // outsideJustification:
+                //     charts.OutsideJustification.endDrawArea,
+                entryTextStyle: charts.TextStyleSpec(
+                    color: charts.MaterialPalette.blue.shadeDefault,
+                    fontFamily: 'Georgia',
+                    fontSize: 11),
+              )
+            ],
+            animationDuration: const Duration(seconds: 5),
+          ),
+        ),
       ],
     );
   }
 }
 
-class Lines extends StatelessWidget {
+class Lines extends StatefulWidget {
   const Lines({super.key});
 
   @override
+  State<Lines> createState() => _LinesState();
+}
+
+class _LinesState extends State<Lines> {
+   late List<charts.Series<Income, String>> _seriesPieData;
+
+  _generateData() {
+    // appointments per week
+    // new patients
+    var data2 = [
+      Appointments(1985, '0', 800), // week 1
+      Appointments(1980, '1', 600), // week 2
+      Appointments(1985, '2', 900), // week 2
+      Appointments(1980, '3', 755),
+      Appointments(1985, '4', 255),
+      Appointments(1980, '5', 1000),
+      Appointments(1980, '6', 300),
+      Appointments(1980, '7', 900),
+      Appointments(1980, '8', 790),
+      Appointments(1980, '9', 300),
+    ];
+
+    var piedata = [
+      Income('Unconfirmed', 35, const Color(0xffFFBE18)),
+      Income('Cancel', 5, const Color(0xffFF4E02)),
+      Income('Confirmed', 45, const Color(0xFF17A1FA)),
+      Income('Conpleted', 75, const Color(0xff0BF7B0)),
+    ];
+
+    _seriesPieData.add(
+      charts.Series(
+        domainFn: (Income task, _) => task.income,
+        measureFn: (Income task, _) => task.incomevalue,
+        colorFn: (Income task, _) =>
+            charts.ColorUtil.fromDartColor(task.colorval),
+        id: 'Appointment ',
+        data: piedata,
+        labelAccessorFn: (Income row, _) => '${row.incomevalue}',
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // _seriesData = <charts.Series<Appointments, String>>[];
+    _seriesPieData = <charts.Series<Income, String>>[];
+
+    _generateData();
+  }
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -764,13 +813,86 @@ class Lines extends StatelessWidget {
             ),
           ),
         ),
+        // charts.LineChart(_seriesPieData,
+        //                           defaultRenderer: charts.LineRendererConfig(
+        //                               includePoints: true,
+        //                               includeLine: true,
+        //                               includeArea: false,
+        //                               stacked: false),
+        //                           animate: true,
+        //                           animationDuration: const Duration(seconds: 5),
+        //                           behaviors: [
+        //                             charts.ChartTitle('Years',
+        //                                 behaviorPosition:
+        //                                     charts.BehaviorPosition.bottom,
+        //                                 titleOutsideJustification: charts
+        //                                     .OutsideJustification
+        //                                     .middleDrawArea),
+        //                             charts.ChartTitle('Sales',
+        //                                 behaviorPosition:
+        //                                     charts.BehaviorPosition.start,
+        //                                 titleOutsideJustification: charts
+        //                                     .OutsideJustification
+        //                                     .middleDrawArea),
+        //                           ]),
       ],
     );
   }
 }
 
-class Pie extends StatelessWidget {
+class Pie extends StatefulWidget {
   const Pie({super.key});
+
+  @override
+  State<Pie> createState() => _PieState();
+}
+
+class _PieState extends State<Pie> {
+  late List<charts.Series<Income, String>> _seriesPieData;
+
+  _generateData() {
+    // appointments per week
+    // new patients
+    var data2 = [
+      Appointments(1985, '0', 800), // week 1
+      Appointments(1980, '1', 600), // week 2
+      Appointments(1985, '2', 900), // week 2
+      Appointments(1980, '3', 755),
+      Appointments(1985, '4', 255),
+      Appointments(1980, '5', 1000),
+      Appointments(1980, '6', 300),
+      Appointments(1980, '7', 900),
+      Appointments(1980, '8', 790),
+      Appointments(1980, '9', 300),
+    ];
+
+    var piedata = [
+      Income('Unconfirmed', 35, const Color(0xffFFBE18)),
+      Income('Cancel', 5, const Color(0xffFF4E02)),
+      Income('Confirmed', 45, const Color(0xFF17A1FA)),
+      Income('Conpleted', 75, const Color(0xff0BF7B0)),
+    ];
+
+    _seriesPieData.add(
+      charts.Series(
+        domainFn: (Income task, _) => task.income,
+        measureFn: (Income task, _) => task.incomevalue,
+        colorFn: (Income task, _) =>
+            charts.ColorUtil.fromDartColor(task.colorval),
+        id: 'Appointment Report',
+        data: piedata,
+        labelAccessorFn: (Income row, _) => '${row.incomevalue}',
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _seriesPieData = <charts.Series<Income, String>>[];
+    _generateData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -799,6 +921,50 @@ class Pie extends StatelessWidget {
                 },
               ),
             ),
+          ),
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width / 4,
+          height: 500,
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Appointment Schedule',
+                  style: GoogleFonts.rubik(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600),
+                  textAlign: TextAlign.start,
+                ),
+              ),
+              const SizedBox(
+                height: 5.0,
+              ),
+              Expanded(
+                child: charts.PieChart<String>(_seriesPieData,
+                    animate: true,
+                    animationDuration: const Duration(seconds: 5),
+                    behaviors: [
+                      charts.DatumLegend(
+                        outsideJustification: charts.OutsideJustification.start,
+                        position: charts.BehaviorPosition.top,
+                        horizontalFirst: true,
+                        desiredMaxColumns: 2,
+                        cellPadding: const EdgeInsets.only(
+                            left: 6, right: 4.0, bottom: 4.0),
+                        entryTextStyle: charts.TextStyleSpec(
+                            color: charts.ColorUtil.fromDartColor(
+                                Color.fromARGB(255, 0, 0, 0)),
+                            fontFamily: 'Rubik',
+                            fontSize: 18),
+                      )
+                    ],
+                    defaultRenderer: charts.ArcRendererConfig(
+                        arcWidth: 1000, arcRendererDecorators: [])),
+              ),
+            ],
           ),
         ),
       ],

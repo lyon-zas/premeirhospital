@@ -2,18 +2,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter_new/flutter.dart' as charts;
 import 'package:premierhospitaladmin/screens/appointment/add_appointment.dart';
+import 'package:premierhospitaladmin/screens/appointment/queue.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:premierhospitaladmin/utils/colors.dart';
 
-class Appointment extends StatefulWidget {
-  const Appointment({super.key});
+class AppointmentPage extends StatefulWidget {
+  const AppointmentPage({super.key});
 
   @override
-  State<Appointment> createState() => _AppointmentState();
+  State<AppointmentPage> createState() => _AppointmentPageState();
 }
 
-class _AppointmentState extends State<Appointment> {
+class _AppointmentPageState extends State<AppointmentPage> {
   late UserDataSource userDataSource;
   late List<AppointmentData> UserData = [];
 
@@ -126,16 +127,21 @@ class _AppointmentState extends State<Appointment> {
                         SizedBox(
                           width: 10,
                         ),
-                        Container(
-                          color: inactiveButtonColor,
-                          height: MediaQuery.of(context).size.height * 0.06,
-                          width: MediaQuery.of(context).size.width * 0.08,
-                          child: Center(
-                            child: Text("Queue",
-                                style: GoogleFonts.rubik(
-                                    color: Colors.white,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400)),
+                        GestureDetector(
+                          onTap: (() {
+                            Navigator.pushNamed(context, Queue.routeName);
+                          }),
+                          child: Container(
+                            color: inactiveButtonColor,
+                            height: MediaQuery.of(context).size.height * 0.06,
+                            width: MediaQuery.of(context).size.width * 0.08,
+                            child: Center(
+                              child: Text("Queue",
+                                  style: GoogleFonts.rubik(
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400)),
+                            ),
                           ),
                         )
                       ],

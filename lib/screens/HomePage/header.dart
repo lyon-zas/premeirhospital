@@ -11,6 +11,7 @@ import '../../firebase_resources/auth_method.dart';
 import '../../responsive.dart';
 import '../../utils/colors.dart';
 import '../Auth/login_screen.dart';
+import 'home_screen.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
   const Header({
@@ -32,10 +33,14 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
               onPressed: context.read<MenuController>().controlMenu,
             ),
           if (!Responsive.isMobile(context))
-            Image.asset(
-              "assets/logo.png",
-              height: 130,
-              width: 161,
+            InkWell(
+              onTap: () =>
+                  Navigator.pushReplacementNamed(context, HomePage.routeName),
+              child: Image.asset(
+                "assets/logo.png",
+                height: 130,
+                width: 161,
+              ),
             ),
           if (!Responsive.isMobile(context))
             Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),

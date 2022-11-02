@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:charts_flutter_new/flutter.dart' as charts;
 
 import '../../utils/colors.dart';
 
@@ -78,7 +80,7 @@ class _FinancialReportState extends State<FinancialReport> {
                             fontSize: 18,
                             fontWeight: FontWeight.w700),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       DropdownButtonHideUnderline(
@@ -95,14 +97,14 @@ class _FinancialReportState extends State<FinancialReport> {
                                   hint: Text(
                                     _selectedTimeDuration,
                                     style: GoogleFonts.rubik(
-                                        color: Color(0xFF908F8F),
+                                        color: const Color(0xFF908F8F),
                                         fontSize: 18,
                                         fontWeight: FontWeight.w400),
                                   ),
 
                                   // style: TextStyle(color: Color(0xFFD9D9D9),),
 
-                                  focusColor: Color(0xFFD9D9D9),
+                                  focusColor: const Color(0xFFD9D9D9),
                                   items: timeDuration.map(
                                     (val) {
                                       return DropdownMenuItem<String>(
@@ -133,7 +135,7 @@ class _FinancialReportState extends State<FinancialReport> {
                             fontSize: 18,
                             fontWeight: FontWeight.w700),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       DropdownButtonHideUnderline(
@@ -149,14 +151,14 @@ class _FinancialReportState extends State<FinancialReport> {
                                   hint: Text(
                                     _selectedDepartment,
                                     style: GoogleFonts.rubik(
-                                        color: Color(0xFF908F8F),
+                                        color: const Color(0xFF908F8F),
                                         fontSize: 18,
                                         fontWeight: FontWeight.w400),
                                   ),
 
                                   // style: TextStyle(color: Color(0xFFD9D9D9),),
 
-                                  focusColor: Color(0xFFD9D9D9),
+                                  focusColor: const Color(0xFFD9D9D9),
                                   items: deparment.map(
                                     (val) {
                                       return DropdownMenuItem<String>(
@@ -187,7 +189,7 @@ class _FinancialReportState extends State<FinancialReport> {
                             fontSize: 18,
                             fontWeight: FontWeight.w700),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       DropdownButtonHideUnderline(
@@ -204,14 +206,14 @@ class _FinancialReportState extends State<FinancialReport> {
                                   hint: Text(
                                     _collectedBy,
                                     style: GoogleFonts.rubik(
-                                        color: Color(0xFF908F8F),
+                                        color: const Color(0xFF908F8F),
                                         fontSize: 18,
                                         fontWeight: FontWeight.w400),
                                   ),
 
                                   // style: TextStyle(color: Color(0xFFD9D9D9),),
 
-                                  focusColor: Color(0xFFD9D9D9),
+                                  focusColor: const Color(0xFFD9D9D9),
                                   items: collected.map(
                                     (val) {
                                       return DropdownMenuItem<String>(
@@ -236,7 +238,7 @@ class _FinancialReportState extends State<FinancialReport> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 0,
             ),
             Text(
@@ -246,7 +248,7 @@ class _FinancialReportState extends State<FinancialReport> {
                   fontSize: 20,
                   fontWeight: FontWeight.w700),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
@@ -257,14 +259,14 @@ class _FinancialReportState extends State<FinancialReport> {
                   Container(
                     color: selectedTab == 1
                         ? inactiveButtonColor
-                        : Color(0xFFD9D9D9),
+                        : const Color(0xFFD9D9D9),
                     height: 40,
                     width: MediaQuery.of(context).size.width * 0.11,
                     child: Center(
                       child: ListTile(
                         // selected: selectedIndex == 1,
                         iconColor: Colors.black,
-                        leading: FaIcon(FontAwesomeIcons.table),
+                        leading: const FaIcon(FontAwesomeIcons.table),
                         title: Text("Table",
                             textAlign: TextAlign.center,
                             style: GoogleFonts.inter(
@@ -274,7 +276,7 @@ class _FinancialReportState extends State<FinancialReport> {
                         onTap: () {
                           setState(() {
                             selectedTab = 1;
-                            selectedWidget = Tables();
+                            selectedWidget = const Tables();
                           });
                         },
                       ),
@@ -283,14 +285,14 @@ class _FinancialReportState extends State<FinancialReport> {
                   Container(
                     color: selectedTab == 2
                         ? inactiveButtonColor
-                        : Color(0xFFD9D9D9),
+                        : const Color(0xFFD9D9D9),
                     height: 40,
                     width: MediaQuery.of(context).size.width * 0.12,
                     child: Center(
                       child: ListTile(
                         // selected: selectedIndex == 1,
                         iconColor: Colors.black,
-                        leading: FaIcon(FontAwesomeIcons.chartColumn),
+                        leading: const FaIcon(FontAwesomeIcons.chartColumn),
                         title: Text("Column",
                             textAlign: TextAlign.center,
                             style: GoogleFonts.inter(
@@ -300,7 +302,7 @@ class _FinancialReportState extends State<FinancialReport> {
                         onTap: () {
                           setState(() {
                             selectedTab = 2;
-                            selectedWidget = Columns();
+                            selectedWidget = const Columns();
                           });
                         },
                       ),
@@ -309,14 +311,14 @@ class _FinancialReportState extends State<FinancialReport> {
                   Container(
                     color: selectedTab == 3
                         ? inactiveButtonColor
-                        : Color(0xFFD9D9D9),
+                        : const Color(0xFFD9D9D9),
                     height: 40,
                     width: MediaQuery.of(context).size.width * 0.1,
                     child: Center(
                       child: ListTile(
                         // selected: selectedIndex == 1,
                         iconColor: Colors.black,
-                        leading: FaIcon(FontAwesomeIcons.chartLine),
+                        leading: const FaIcon(FontAwesomeIcons.chartLine),
                         title: Text("Line",
                             textAlign: TextAlign.center,
                             style: GoogleFonts.inter(
@@ -326,7 +328,7 @@ class _FinancialReportState extends State<FinancialReport> {
                         onTap: () {
                           setState(() {
                             selectedTab = 3;
-                            selectedWidget = Lines();
+                            selectedWidget = const Lines();
                           });
                         },
                       ),
@@ -335,14 +337,14 @@ class _FinancialReportState extends State<FinancialReport> {
                   Container(
                     color: selectedTab == 4
                         ? inactiveButtonColor
-                        : Color(0xFFD9D9D9),
+                        : const Color(0xFFD9D9D9),
                     height: 40,
                     width: MediaQuery.of(context).size.width * 0.1,
                     child: Center(
                       child: ListTile(
                         // selected: selectedIndex == 1,
                         iconColor: Colors.black,
-                        leading: FaIcon(FontAwesomeIcons.chartPie),
+                        leading: const FaIcon(FontAwesomeIcons.chartPie),
                         title: Text("Pie",
                             textAlign: TextAlign.center,
                             style: GoogleFonts.inter(
@@ -352,7 +354,7 @@ class _FinancialReportState extends State<FinancialReport> {
                         onTap: () {
                           setState(() {
                             selectedTab = 4;
-                            selectedWidget = Pie();
+                            selectedWidget = const Pie();
                           });
                         },
                       ),
@@ -361,13 +363,13 @@ class _FinancialReportState extends State<FinancialReport> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Card(
               elevation: 10,
               child: Container(
-                  height: MediaQuery.of(context).size.height / 1.7,
+                  height: MediaQuery.of(context).size.height / 1.3,
                   color: Colors.white,
                   child: selectedWidget),
             )
@@ -411,13 +413,13 @@ class Tables extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal:10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: Table(
               border: TableBorder
                   .all(), // Allows to add a border decoration around your table
               children: [
                 TableRow(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color(0xFFB3B3B3),
                     ),
                     children: [
@@ -494,83 +496,376 @@ class Tables extends StatelessWidget {
                             fontWeight: FontWeight.w700),
                       ),
                     ]),
-                    TableRow(
-                    
-                    children: [
-                      Text(
-                        '',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.rubik(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
-                      ),
-                      Text(
-                        '',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.rubik(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
-                      ),
-                      Text(
-                        '',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.rubik(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
-                      ),
-                      Text(
-                        '',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.rubik(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
-                      ),
-                      Text(
-                        '',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.rubik(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
-                      ),
-                      Text(
-                        '',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.rubik(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
-                      ),
-                      Text(
-                        'P',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.rubik(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
-                      ),
-                      Text(
-                        '',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.rubik(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
-                      ),
-                      Text(
-                        '',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.rubik(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ]),
-
+                TableRow(children: [
+                  Text(
+                    'Trf1328348',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    '10/08/2021',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Authur Voss',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Ph0018bd',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'FemNutrition',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'accountant',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Transfer',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Bank',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    '1000',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                ]),
+                TableRow(children: [
+                  Text(
+                    'Trf1328348',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    '10/08/2021',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Authur Voss',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Ph0018bd',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'FemNutrition',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'accountant',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Transfer',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Bank',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    '1000',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                ]),
+                TableRow(children: [
+                  Text(
+                    'Trf1328348',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    '10/08/2021',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Authur Voss',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Ph0018bd',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'FemNutrition',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'accountant',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Transfer',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Bank',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    '1000',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                ]),
+                TableRow(children: [
+                  Text(
+                    'Trfru29898348',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    '14/08/2021',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'James kane',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Ph0018bd',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'FemNutrition',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'accountant',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Transfer',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Bank',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    '500',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                ]),
+                TableRow(children: [
+                  Text(
+                    'Trf1322u3i8',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    '11/08/2021',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Smith john',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Ph0113bed',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'FemNutrition',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'accountant',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Cash',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'Cash',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    '5000',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700),
+                  ),
+                ]),
               ]),
         ),
       ],
@@ -578,41 +873,115 @@ class Tables extends StatelessWidget {
   }
 }
 
-class Columns extends StatelessWidget {
+class Columns extends StatefulWidget {
   const Columns({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: 200,
-              height: 40,
-              color: primaryColor,
-              child: ListTile(
-                tileColor: primaryColor,
-                title: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Text("Build Report",
-                      style: GoogleFonts.inter(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700)),
-                ),
-                onTap: () {
-                  // onIndexChanged(1);
-                },
-              ),
-            ),
-          ),
-        ),
-      ],
+  State<Columns> createState() => _ColumnsState();
+}
+
+class _ColumnsState extends State<Columns> {
+  late List<charts.Series<Financial, String>> _seriesBarData;
+  late List<Financial> mydata;
+  _generateData(mydata) {
+    _seriesBarData = <charts.Series<Financial, String>>[];
+    _seriesBarData.add(
+      charts.Series(
+        domainFn: (Financial sales, _) => sales.saleYear.toString(),
+        measureFn: (Financial sales, _) => int.parse(sales.saleVal),
+        colorFn: (Financial sales, _) =>
+            charts.ColorUtil.fromDartColor(Color(int.parse(sales.colorVal))),
+        id: 'Finacial Report',
+        data: mydata,
+        labelAccessorFn: (Financial row, _) => row.saleYear,
+      ),
     );
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: _buildBody(context),
+    );
+  }
+
+  Widget _buildBody(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream:
+          FirebaseFirestore.instance.collection('financialchart').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const LinearProgressIndicator();
+        } else {
+          List<Financial> sales = snapshot.data!.docs
+              .map((doc) =>
+                  Financial.fromMap(doc.data() as Map<String, dynamic>))
+              .toList();
+          return _buildChart(context, sales);
+        }
+      },
+    );
+  }
+
+  Widget _buildChart(BuildContext context, List<Financial> saledata) {
+    mydata = saledata;
+    _generateData(mydata);
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              const Text(
+                'Sales by Year',
+                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              Expanded(
+                child: charts.BarChart(
+                  _seriesBarData,
+                  
+                  animate: true,
+                  animationDuration: const Duration(seconds: 5),
+                  behaviors: [
+                    charts.DatumLegend(
+                      // desiredMaxRows: ,
+                     desiredMaxColumns: 5,
+                      entryTextStyle: charts.TextStyleSpec(
+                          color: charts.MaterialPalette.purple.shadeDefault,
+                          fontFamily: 'Georgia',
+                          fontSize: 12),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Financial {
+  final String saleVal;
+  final String saleYear;
+  final String colorVal;
+  Financial(this.saleVal, this.saleYear, this.colorVal);
+
+  Financial.fromMap(Map<String, dynamic> map)
+      : assert(map['saleVal'] != null),
+        assert(map['department'] != null),
+        assert(map['colorVal'] != null),
+        saleVal = map['saleVal'],
+        colorVal = map['colorVal'],
+        saleYear = map['department'];
+
+  @override
+  String toString() => "Record<$saleVal:$saleYear:$colorVal>";
 }
 
 class Lines extends StatelessWidget {
@@ -652,39 +1021,125 @@ class Lines extends StatelessWidget {
   }
 }
 
-class Pie extends StatelessWidget {
+class Pie extends StatefulWidget {
   const Pie({super.key});
 
   @override
+  State<Pie> createState() => _PieState();
+}
+
+class _PieState extends State<Pie> {
+   late List<charts.Series<Financial, String>> _seriesPieData;
+  late List<Financial> mydata;
+  _generateData(mydata) {
+    _seriesPieData = <charts.Series<Financial, String>>[];
+    _seriesPieData.add(
+      charts.Series(
+        domainFn: (Financial task, _) => task.saleYear,
+        measureFn: (Financial task, _) => (int.parse(task.saleVal)),
+        colorFn: (Financial task, _) =>
+            charts.ColorUtil.fromDartColor(Color(int.parse(task.colorVal))),
+        id: 'tasks',
+        data: mydata,
+        labelAccessorFn: (Financial row, _) => row.saleVal,
+      ),
+    );
+  }
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              width: 200,
-              height: 40,
-              color: primaryColor,
-              child: ListTile(
-                tileColor: primaryColor,
-                title: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Text("Build Report",
-                      style: GoogleFonts.inter(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700)),
-                ),
-                onTap: () {
-                  // onIndexChanged(1);
-                },
+    return Scaffold(
+      body:  _buildBody(context),
+      // children: [
+      //   Padding(
+      //     padding: const EdgeInsets.all(8.0),
+      //     child: Align(
+      //       alignment: Alignment.centerLeft,
+      //       child: Container(
+      //         width: 200,
+      //         height: 40,
+      //         color: primaryColor,
+      //         child: ListTile(
+      //           tileColor: primaryColor,
+      //           title: Padding(
+      //             padding: const EdgeInsets.all(5.0),
+      //             child: Text("Build Report",
+      //                 style: GoogleFonts.inter(
+      //                     color: Colors.white,
+      //                     fontSize: 20,
+      //                     fontWeight: FontWeight.w700)),
+      //           ),
+      //           onTap: () {
+      //             // onIndexChanged(1);
+      //           },
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+      // ],
+    );
+  }
+  Widget _buildBody(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream:
+          FirebaseFirestore.instance.collection('financialchart').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const LinearProgressIndicator();
+        } else {
+          List<Financial> sales = snapshot.data!.docs
+              .map((doc) =>
+                  Financial.fromMap(doc.data() as Map<String, dynamic>))
+              .toList();
+          return _buildChart(context, sales);
+        }
+      },
+    );
+  }
+  Widget _buildChart(BuildContext context, List<Financial> taskdata) {
+    mydata = taskdata;
+    _generateData(mydata);
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              // Text(
+              //   'Time spent on daily tasks',
+              //   style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              // ),
+              const SizedBox(
+                height: 10.0,
               ),
-            ),
+              Expanded(
+                child:  charts.PieChart<String>(_seriesPieData,
+                    animate: true,
+                    animationDuration: const Duration(seconds: 5),
+                    behaviors: [
+                       charts.DatumLegend(
+                        outsideJustification:
+                            charts.OutsideJustification.endDrawArea,
+                        horizontalFirst: false,
+                        desiredMaxRows: 2,
+                        cellPadding:
+                             const EdgeInsets.only(right: 4.0, bottom: 4.0,top:4.0),
+                        entryTextStyle: charts.TextStyleSpec(
+                            color: charts.MaterialPalette.purple.shadeDefault,
+                            fontFamily: 'Georgia',
+                            fontSize: 18),
+                      )
+                    ],
+                    defaultRenderer:  charts.ArcRendererConfig(
+                        arcWidth: 100,
+                        arcRendererDecorators: [
+                           charts.ArcLabelDecorator(
+                              labelPosition: charts.ArcLabelPosition.inside)
+                        ])),
+              ),
+            ],
           ),
         ),
-      ],
+      ),
     );
   }
 }
