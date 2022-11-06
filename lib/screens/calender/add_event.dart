@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:premierhospitaladmin/screens/calender/calender_model.dart';
@@ -18,6 +19,7 @@ class AddEventPage extends StatefulWidget {
 class _AddEventPageState extends State<AddEventPage> {
   final _formkey = GlobalKey<FormFieldState>();
   final titleController = TextEditingController();
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   late DateTime fromDate;
   late DateTime toDate;
   @override
@@ -188,16 +190,23 @@ class _AddEventPageState extends State<AddEventPage> {
   }
 
   Future saveForm() async {
-    final isValid = _formkey.currentState!.validate();
-    if (isValid) {
-      final event = Event(
-          title: titleController.text,
-          description: '',
-          from: fromDate,
-          to: toDate);
-      // final provider = Provider.of<EventProvider>(context,
-      //     listen: provider.addEvents(event));
-      Navigator.pop(context);
-    }
+    // final isValid = _formkey.currentState!.validate();
+    // if (isValid) {
+    final event = Event(
+        title: titleController.text,
+        description: '',
+        from: fromDate,
+        to: toDate);
+    var fromDates = DateFormat('dd/MM/yyyy HH:mm:ss').format(fromDate);
+    var toDates = DateFormat('dd/MM/yyyy HH:mm:ss').format(toDate);
+    _firestore.collection("CalendarAppointmentCollection").doc().set({
+      'Subject': titleController.text,
+      'StartTime': fromDates,
+      'EndTime': toDates
+    });
+    // final provider = Provider.of<EventProvider>(context,
+    //     listen: provider.addEvents(event));
+    Navigator.pop(context);
+    // }
   }
 }

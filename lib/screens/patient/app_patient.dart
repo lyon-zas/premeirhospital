@@ -47,6 +47,7 @@ class _AddPatientState extends State<AddPatient> {
       _selectedgender = '';
       _phone.clear();
     });
+    Navigator.pop(context);
   }
 
   //Method for showing the date picker

@@ -21,12 +21,8 @@ class AuthMethods {
     return null;
   }
 
-  Future<bool> signUpUser(
-    BuildContext context,
-    String email,
-    String name,
-    String password,
-  ) async {
+  Future<bool> signUpUser(BuildContext context, String email, String name,
+      String password, String phone) async {
     bool res = false;
     try {
       UserCredential cred = await _auth.createUserWithEmailAndPassword(
@@ -36,6 +32,8 @@ class AuthMethods {
           name: name.trim(),
           email: email.trim(),
           uid: cred.user!.uid,
+          // role: "admin",
+          // phone: phone
         );
         await _userRef.doc(cred.user!.uid).set(user.toMap());
         Provider.of<UserProvider>(context, listen: false).setUser(user);
@@ -83,7 +81,6 @@ class AuthMethods {
 
   Future<void> logout() async {
     await _auth.signOut();
-    
   }
 }
 

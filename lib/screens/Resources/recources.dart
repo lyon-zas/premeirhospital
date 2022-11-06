@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:premierhospitaladmin/screens/Resources/asign_role.dart';
+import 'package:premierhospitaladmin/screens/Resources/create_user.dart';
 import 'package:premierhospitaladmin/screens/report/financial_report.dart';
 
 import '../../utils/colors.dart';
@@ -139,6 +140,27 @@ class Recources extends StatelessWidget {
                                 child: ListTile(
                                   // selected: selectedIndex == 1,
                                   // iconColor: Colors.white,
+                                  title: const Text("ADD USER",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                      )),
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const CreateNewAdmin()));
+                                  },
+                                ),
+                              ),
+                            ),
+                            Container(
+                              color: Color(0xFFD9D9D9),
+                              height: 45,
+                              width: MediaQuery.of(context).size.width / 7,
+                              child: Center(
+                                child: ListTile(
+                                  // selected: selectedIndex == 1,
+                                  // iconColor: Colors.white,
                                   title: const Text("CREATE NEW ROLE",
                                       style: TextStyle(
                                         color: Colors.black,
@@ -216,25 +238,6 @@ class Recources extends StatelessWidget {
                                   // selected: selectedIndex == 1,
                                   // iconColor: Colors.white,
                                   title: const Text("MANAGE USER GROUP",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                      )),
-                                  onTap: () {
-                                    // Navigator.pushNamed(
-                                    //     context, FinancialReport.routeName);
-                                  },
-                                ),
-                              ),
-                            ),
-                            Container(
-                              color: Color(0xFFD9D9D9),
-                              height: 45,
-                              width: MediaQuery.of(context).size.width / 7,
-                              child: Center(
-                                child: ListTile(
-                                  // selected: selectedIndex == 1,
-                                  // iconColor: Colors.white,
-                                  title: const Text("ADD/REMOVE USER",
                                       style: TextStyle(
                                         color: Colors.black,
                                       )),

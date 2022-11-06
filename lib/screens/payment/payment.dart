@@ -30,7 +30,7 @@ class Payment extends StatelessWidget {
                   children: [
                     Container(
                       color: const Color(0xFFE8E4E4),
-                      width: MediaQuery.of(context).size.width / 4.5,
+                      width: MediaQuery.of(context).size.width / 4.2,
                       height: MediaQuery.of(context).size.height / 1.5,
                       child: Card(
                         color: const Color(0xFFE8E4E4),
@@ -322,7 +322,7 @@ class Payment extends StatelessWidget {
                     ),
                     Container(
                       color: const Color(0xFFE8E4E4),
-                      width: MediaQuery.of(context).size.width / 4,
+                      width: MediaQuery.of(context).size.width / 4.2,
                       height: MediaQuery.of(context).size.height / 1.5,
                       child: Card(
                         color: const Color(0xFFE8E4E4),

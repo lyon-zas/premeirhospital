@@ -204,16 +204,16 @@ class SideMenu extends StatelessWidget {
                             ? primaryColor
                             : inactiveButtonColor,
                       ),
-                      child: ListTile(
-                        selected: selectedIndex == 8,
-                        title: const Text("Push Notification",
-                            style: TextStyle(
-                              color: Colors.white,
-                            )),
-                        onTap: () {
-                          onIndexChanged(8);
-                        },
-                      ),
+                      // child: ListTile(
+                      //   selected: selectedIndex == 8,
+                      //   title: const Text("Push Notification",
+                      //       style: TextStyle(
+                      //         color: Colors.white,
+                      //       )),
+                      //   onTap: () {
+                      //     onIndexChanged(8);
+                      //   },
+                      // ),
                     ),
                   ),
                 ],

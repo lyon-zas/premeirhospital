@@ -4,8 +4,13 @@ class User {
   final String uid;
   final String name;
   final String email;
+  // final String role;
+  // final String Phone;
 
-  User({
+  User(
+    // this.role,
+    // this.Phone, 
+    {
     required this.uid,
     required this.name,
     required this.email,
@@ -16,6 +21,7 @@ class User {
       'uid': uid,
       'username': name,
       'email': email,
+      
     };
   }
 
@@ -24,6 +30,8 @@ class User {
       uid: map['uid'] ?? '',
       name: map['name'] ?? '',
       email: map['email'] ?? '',
+      // role: map["role"] ?? '',
+      // phone: map["role"] ?? '',
     );
   }
 }

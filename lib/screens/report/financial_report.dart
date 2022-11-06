@@ -126,60 +126,60 @@ class _FinancialReportState extends State<FinancialReport> {
                       ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        "Collectted by",
-                        style: GoogleFonts.rubik(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      DropdownButtonHideUnderline(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 35,
-                            color: Colors.white,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: DropdownButton<String>(
-                                  hint: Text(
-                                    _selectedDepartment,
-                                    style: GoogleFonts.rubik(
-                                        color: const Color(0xFF908F8F),
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w400),
-                                  ),
+                  // Column(
+                  //   children: [
+                  //     Text(
+                  //       "Collectted by",
+                  //       style: GoogleFonts.rubik(
+                  //           color: Colors.black,
+                  //           fontSize: 18,
+                  //           fontWeight: FontWeight.w700),
+                  //     ),
+                  //     const SizedBox(
+                  //       height: 10,
+                  //     ),
+                  //     DropdownButtonHideUnderline(
+                  //       child: Padding(
+                  //         padding: const EdgeInsets.all(8.0),
+                  //         child: Container(
+                  //           height: 35,
+                  //           color: Colors.white,
+                  //           child: Padding(
+                  //             padding:
+                  //                 const EdgeInsets.symmetric(horizontal: 10.0),
+                  //             child: DropdownButton<String>(
+                  //                 hint: Text(
+                  //                   _selectedDepartment,
+                  //                   style: GoogleFonts.rubik(
+                  //                       color: const Color(0xFF908F8F),
+                  //                       fontSize: 18,
+                  //                       fontWeight: FontWeight.w400),
+                  //                 ),
 
-                                  // style: TextStyle(color: Color(0xFFD9D9D9),),
+                  //                 // style: TextStyle(color: Color(0xFFD9D9D9),),
 
-                                  focusColor: const Color(0xFFD9D9D9),
-                                  items: deparment.map(
-                                    (val) {
-                                      return DropdownMenuItem<String>(
-                                        value: val,
-                                        child: Text(val),
-                                      );
-                                    },
-                                  ).toList(),
-                                  onChanged: (val) {
-                                    setState(
-                                      () {
-                                        _selectedDepartment = val!;
-                                      },
-                                    );
-                                  }),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  //                 focusColor: const Color(0xFFD9D9D9),
+                  //                 items: deparment.map(
+                  //                   (val) {
+                  //                     return DropdownMenuItem<String>(
+                  //                       value: val,
+                  //                       child: Text(val),
+                  //                     );
+                  //                   },
+                  //                 ).toList(),
+                  //                 onChanged: (val) {
+                  //                   setState(
+                  //                     () {
+                  //                       _selectedDepartment = val!;
+                  //                     },
+                  //                   );
+                  //                 }),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   Column(
                     children: [
                       Text(

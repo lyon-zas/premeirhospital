@@ -40,13 +40,15 @@ class _PatientState extends State<Patient> {
 
         userDataSource = UserDataSource(UserData);
         return SfDataGrid(
-            columnWidthMode: ColumnWidthMode.fill,
+           columnWidthMode: ColumnWidthMode.fitByColumnName,
             source: userDataSource,
             gridLinesVisibility: GridLinesVisibility.both,
             headerGridLinesVisibility: GridLinesVisibility.both,
             allowColumnsResizing: true,
             allowSorting: true,
             allowFiltering: true,
+            shrinkWrapRows: false,
+            isScrollbarAlwaysShown: true,
             columns: getColumns);
       },
     );

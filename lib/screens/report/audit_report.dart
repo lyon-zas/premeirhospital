@@ -124,60 +124,60 @@ class _AuditReportState extends State<AuditReport> {
                       ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        "Collectted by",
-                        style: GoogleFonts.rubik(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      DropdownButtonHideUnderline(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 35,
-                            color: Colors.white,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10.0),
-                              child: DropdownButton<String>(
-                                  hint: Text(
-                                    _selectedDepartment,
-                                    style: GoogleFonts.rubik(
-                                        color: const Color(0xFF908F8F),
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w400),
-                                  ),
+                  // Column(
+                  //   children: [
+                  //     Text(
+                  //       "Collectted by",
+                  //       style: GoogleFonts.rubik(
+                  //           color: Colors.black,
+                  //           fontSize: 18,
+                  //           fontWeight: FontWeight.w700),
+                  //     ),
+                  //     const SizedBox(
+                  //       height: 10,
+                  //     ),
+                  //     DropdownButtonHideUnderline(
+                  //       child: Padding(
+                  //         padding: const EdgeInsets.all(8.0),
+                  //         child: Container(
+                  //           height: 35,
+                  //           color: Colors.white,
+                  //           child: Padding(
+                  //             padding:
+                  //                 const EdgeInsets.symmetric(horizontal: 10.0),
+                  //             child: DropdownButton<String>(
+                  //                 hint: Text(
+                  //                   _selectedDepartment,
+                  //                   style: GoogleFonts.rubik(
+                  //                       color: const Color(0xFF908F8F),
+                  //                       fontSize: 18,
+                  //                       fontWeight: FontWeight.w400),
+                  //                 ),
 
-                                  // style: TextStyle(color: Color(0xFFD9D9D9),),
+                  //                 // style: TextStyle(color: Color(0xFFD9D9D9),),
 
-                                  focusColor: const Color(0xFFD9D9D9),
-                                  items: deparment.map(
-                                    (val) {
-                                      return DropdownMenuItem<String>(
-                                        value: val,
-                                        child: Text(val),
-                                      );
-                                    },
-                                  ).toList(),
-                                  onChanged: (val) {
-                                    setState(
-                                      () {
-                                        _selectedDepartment = val!;
-                                      },
-                                    );
-                                  }),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  //                 focusColor: const Color(0xFFD9D9D9),
+                  //                 items: deparment.map(
+                  //                   (val) {
+                  //                     return DropdownMenuItem<String>(
+                  //                       value: val,
+                  //                       child: Text(val),
+                  //                     );
+                  //                   },
+                  //                 ).toList(),
+                  //                 onChanged: (val) {
+                  //                   setState(
+                  //                     () {
+                  //                       _selectedDepartment = val!;
+                  //                     },
+                  //                   );
+                  //                 }),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   Column(
                     children: [
                       Text(
@@ -249,118 +249,118 @@ class _AuditReportState extends State<AuditReport> {
             const SizedBox(
               height: 20,
             ),
-            Container(
-              width: MediaQuery.of(context).size.width / 2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    color: selectedTab == 1
-                        ? inactiveButtonColor
-                        : const Color(0xFFD9D9D9),
-                    height: 40,
-                    width: MediaQuery.of(context).size.width * 0.11,
-                    child: Center(
-                      child: ListTile(
-                        // selected: selectedIndex == 1,
-                        iconColor: Colors.black,
-                        leading: const FaIcon(FontAwesomeIcons.table),
-                        title: Text("Table",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.inter(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700)),
-                        onTap: () {
-                          setState(() {
-                            selectedTab = 1;
-                            selectedWidget = const Tables();
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: selectedTab == 2
-                        ? inactiveButtonColor
-                        : const Color(0xFFD9D9D9),
-                    height: 40,
-                    width: MediaQuery.of(context).size.width * 0.12,
-                    child: Center(
-                      child: ListTile(
-                        // selected: selectedIndex == 1,
-                        iconColor: Colors.black,
-                        leading: const FaIcon(FontAwesomeIcons.chartColumn),
-                        title: Text("Column",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.inter(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700)),
-                        onTap: () {
-                          setState(() {
-                            selectedTab = 2;
-                            selectedWidget = const Columns();
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: selectedTab == 3
-                        ? inactiveButtonColor
-                        : const Color(0xFFD9D9D9),
-                    height: 40,
-                    width: MediaQuery.of(context).size.width * 0.1,
-                    child: Center(
-                      child: ListTile(
-                        // selected: selectedIndex == 1,
-                        iconColor: Colors.black,
-                        leading: const FaIcon(FontAwesomeIcons.chartLine),
-                        title: Text("Line",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.inter(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700)),
-                        onTap: () {
-                          setState(() {
-                            selectedTab = 3;
-                            selectedWidget = const Lines();
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  Container(
-                    color: selectedTab == 4
-                        ? inactiveButtonColor
-                        : const Color(0xFFD9D9D9),
-                    height: 40,
-                    width: MediaQuery.of(context).size.width * 0.1,
-                    child: Center(
-                      child: ListTile(
-                        // selected: selectedIndex == 1,
-                        iconColor: Colors.black,
-                        leading: const FaIcon(FontAwesomeIcons.chartPie),
-                        title: Text("Pie",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.inter(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700)),
-                        onTap: () {
-                          setState(() {
-                            selectedTab = 4;
-                            selectedWidget = const Pie();
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Container(
+            //   width: MediaQuery.of(context).size.width / 2,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Container(
+            //         color: selectedTab == 1
+            //             ? inactiveButtonColor
+            //             : const Color(0xFFD9D9D9),
+            //         height: 40,
+            //         width: MediaQuery.of(context).size.width * 0.11,
+            //         child: Center(
+            //           child: ListTile(
+            //             // selected: selectedIndex == 1,
+            //             iconColor: Colors.black,
+            //             leading: const FaIcon(FontAwesomeIcons.table),
+            //             title: Text("Table",
+            //                 textAlign: TextAlign.center,
+            //                 style: GoogleFonts.inter(
+            //                     color: Colors.black,
+            //                     fontSize: 20,
+            //                     fontWeight: FontWeight.w700)),
+            //             onTap: () {
+            //               setState(() {
+            //                 selectedTab = 1;
+            //                 selectedWidget = const Tables();
+            //               });
+            //             },
+            //           ),
+            //         ),
+            //       ),
+            //       Container(
+            //         color: selectedTab == 2
+            //             ? inactiveButtonColor
+            //             : const Color(0xFFD9D9D9),
+            //         height: 40,
+            //         width: MediaQuery.of(context).size.width * 0.12,
+            //         child: Center(
+            //           child: ListTile(
+            //             // selected: selectedIndex == 1,
+            //             iconColor: Colors.black,
+            //             leading: const FaIcon(FontAwesomeIcons.chartColumn),
+            //             title: Text("Column",
+            //                 textAlign: TextAlign.center,
+            //                 style: GoogleFonts.inter(
+            //                     color: Colors.black,
+            //                     fontSize: 20,
+            //                     fontWeight: FontWeight.w700)),
+            //             onTap: () {
+            //               setState(() {
+            //                 selectedTab = 2;
+            //                 selectedWidget = const Columns();
+            //               });
+            //             },
+            //           ),
+            //         ),
+            //       ),
+            //       Container(
+            //         color: selectedTab == 3
+            //             ? inactiveButtonColor
+            //             : const Color(0xFFD9D9D9),
+            //         height: 40,
+            //         width: MediaQuery.of(context).size.width * 0.1,
+            //         child: Center(
+            //           child: ListTile(
+            //             // selected: selectedIndex == 1,
+            //             iconColor: Colors.black,
+            //             leading: const FaIcon(FontAwesomeIcons.chartLine),
+            //             title: Text("Line",
+            //                 textAlign: TextAlign.center,
+            //                 style: GoogleFonts.inter(
+            //                     color: Colors.black,
+            //                     fontSize: 20,
+            //                     fontWeight: FontWeight.w700)),
+            //             onTap: () {
+            //               setState(() {
+            //                 selectedTab = 3;
+            //                 selectedWidget = const Lines();
+            //               });
+            //             },
+            //           ),
+            //         ),
+            //       ),
+            //       Container(
+            //         color: selectedTab == 4
+            //             ? inactiveButtonColor
+            //             : const Color(0xFFD9D9D9),
+            //         height: 40,
+            //         width: MediaQuery.of(context).size.width * 0.1,
+            //         child: Center(
+            //           child: ListTile(
+            //             // selected: selectedIndex == 1,
+            //             iconColor: Colors.black,
+            //             leading: const FaIcon(FontAwesomeIcons.chartPie),
+            //             title: Text("Pie",
+            //                 textAlign: TextAlign.center,
+            //                 style: GoogleFonts.inter(
+            //                     color: Colors.black,
+            //                     fontSize: 20,
+            //                     fontWeight: FontWeight.w700)),
+            //             onTap: () {
+            //               setState(() {
+            //                 selectedTab = 4;
+            //                 selectedWidget = const Pie();
+            //               });
+            //             },
+            //           ),
+            //         ),
+            //       ),
+              //   ],
+              // ),
+            // ),
             const SizedBox(
               height: 15,
             ),
@@ -369,7 +369,7 @@ class _AuditReportState extends State<AuditReport> {
               child: Container(
                   height: MediaQuery.of(context).size.height / 1.7,
                   color: Colors.white,
-                  child: selectedWidget),
+                  child: const Tables()),
             )
           ],
         ),

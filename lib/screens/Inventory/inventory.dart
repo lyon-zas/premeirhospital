@@ -1,8 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import 'package:premierhospitaladmin/screens/Inventory/approvals.dart';
+import 'package:premierhospitaladmin/screens/Inventory/bedspace_management.dart';
+import 'package:premierhospitaladmin/screens/Inventory/medical_equipment.dart';
+import 'package:premierhospitaladmin/screens/Inventory/procurment.dart';
+import 'package:premierhospitaladmin/screens/Inventory/stock_tracking.dart';
+import 'package:premierhospitaladmin/screens/Inventory/vendor_management.dart';
 
-import '../patient/patient.dart';
+import '../../utils/colors.dart';
 
 class Inventory extends StatefulWidget {
   const Inventory({super.key});
@@ -12,132 +16,200 @@ class Inventory extends StatefulWidget {
 }
 
 class _InventoryState extends State<Inventory> {
-   late UserDataSource userDataSource;
-  late List<CurrentUserInfo> UserData = [];
-  FirebaseFirestore db = FirebaseFirestore.instance;
-  Stream<QuerySnapshot> _userStream =
-      FirebaseFirestore.instance.collection('Users').snapshots();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(
-      child: StreamBuilder<QuerySnapshot>(
-        stream: _userStream,
-        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData) return LinearProgressIndicator();
-          UserData.clear();
-          snapshot.data!.docs.forEach((doc) {
-            UserData.add(
-                CurrentUserInfo.fromJson(doc.data() as Map<String, dynamic>));
-          });
-
-          userDataSource = UserDataSource(UserData);
-          return SfDataGrid(
-            columnWidthMode: ColumnWidthMode.fill,
-            source: userDataSource,
-            columns: <GridColumn>[
-              GridColumn(
-                columnName: "Uid",
-                label: Container(
-                  padding: EdgeInsets.all(16.0),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'ID',
-                  ),
+    return Scaffold(
+      body: SingleChildScrollView(
+          child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(children: [
+            Card(
+              color: const Color(0xFFD9D9D9),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          color: primaryColor,
+                          height: 45,
+                          width: MediaQuery.of(context).size.width / 7.5,
+                          child: Center(
+                            child: ListTile(
+                              // selected: selectedIndex == 1,
+                              iconColor: Colors.white,
+                              title: const Text("STOCK TRACKING",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  )),
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        const StockTracking()));
+                              },
+                            ),
+                          ),
+                        ),
+                        Container(
+                          color: primaryColor,
+                          height: 45,
+                          width: MediaQuery.of(context).size.width / 7.5,
+                          child: Center(
+                            child: ListTile(
+                              // selected: selectedIndex == 1,
+                              iconColor: Colors.white,
+                              title: const Text("BEDSPACE",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  )),
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        const BedspaceManagement()));
+                              },
+                            ),
+                          ),
+                        ),
+                        Container(
+                          color: primaryColor,
+                          height: 45,
+                          width: MediaQuery.of(context).size.width / 7.5,
+                          child: Center(
+                            child: ListTile(
+                              // selected: selectedIndex == 1,
+                              iconColor: Colors.white,
+                              title: const Text("MEDICAL EQUIPMENT",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  )),
+                              onTap: () => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MedicalEquipment())),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          color: primaryColor,
+                          height: 45,
+                          width: MediaQuery.of(context).size.width / 7.5,
+                          child: Center(
+                            child: ListTile(
+                              // selected: selectedIndex == 1,
+                              iconColor: Colors.white,
+                              title: const Text("VENDOR MANAGEMENT",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  )),
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        const VendorManagement()));
+                              },
+                            ),
+                          ),
+                        ),
+                        Container(
+                          color: primaryColor,
+                          height: 45,
+                          width: MediaQuery.of(context).size.width / 7.5,
+                          child: Center(
+                            child: ListTile(
+                              // selected: selectedIndex == 1,
+                              iconColor: Colors.white,
+                              title: const Text("PROCUREMENT",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  )),
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => const Procument()));
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          color: primaryColor,
+                          height: 45,
+                          width: MediaQuery.of(context).size.width / 6,
+                          child: Center(
+                            child: ListTile(
+                              // selected: selectedIndex == 1,
+                              iconColor: Colors.white,
+                              title: const Text("MEDICATION SUPPLY",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  )),
+                              onTap: () {
+                                // Navigator.pushNamed(
+                                //     context, FinancialReport.routeName);
+                              },
+                            ),
+                          ),
+                        ),
+                        Container(
+                          color: primaryColor,
+                          height: 45,
+                          width: MediaQuery.of(context).size.width / 6,
+                          child: Center(
+                            child: ListTile(
+                              // selected: selectedIndex == 1,
+                              iconColor: Colors.white,
+                              title: const Text("APPROVALS",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  )),
+                              onTap: () => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) => const Approvals())),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          color: primaryColor,
+                          height: 45,
+                          width: MediaQuery.of(context).size.width / 6,
+                          child: Center(
+                            child: ListTile(
+                              // selected: selectedIndex == 1,
+                              iconColor: Colors.white,
+                              title: const Text("POLICY DOCUMENTS",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  )),
+                              onTap: () {
+                                // Navigator.pushNamed(
+                                //     context, FinancialReport.routeName);
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              //make gridcollumns for Name Surname role and city
-              GridColumn(
-                columnName: "Name",
-                label: Container(
-                  padding: EdgeInsets.all(16.0),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Name',
-                  ),
-                ),
-              ),
-              GridColumn(
-                columnName: "Surname",
-                label: Container(
-                  padding: EdgeInsets.all(16.0),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Surname',
-                  ),
-                ),
-              ),
-              GridColumn(
-                columnName: "Role",
-                label: Container(
-                  padding: EdgeInsets.all(16.0),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Role',
-                  ),
-                ),
-              ),
-              GridColumn(
-                columnName: "City",
-                label: Container(
-                  padding: EdgeInsets.all(16.0),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'City',
-                  ),
-                ),
-              ),
-            ],
-          );
-        },
-      ),
-    ),);
-  }
-}
-
-class UserDataSource extends DataGridSource {
-  UserDataSource(this._currentUserInfo) {
-    _buildDataRow();
-  }
-
-  List<DataGridRow> users = [];
-  List<CurrentUserInfo> _currentUserInfo;
-
-  void _buildDataRow() {
-    users = _currentUserInfo
-        .map<DataGridRow>((e) => DataGridRow(cells: [
-              DataGridCell<String>(
-                  columnName: 'Patient ID', value: e.PatientId),
-              DataGridCell<String>(
-                  columnName: 'First Name', value: e.FirstName),
-              DataGridCell<String>(columnName: 'Last Name', value: e.LastName),
-              DataGridCell<String>(columnName: 'Date of Birth', value: e.DOB),
-              DataGridCell<String>(columnName: "Gender", value: e.Gender),
-              DataGridCell<String>(columnName: "Phone", value: e.Phonenumber),
-              DataGridCell<String>(columnName: "Status", value: e.Status)
-            ]))
-        .toList();
-  }
-
-  @override
-  List<DataGridRow> get rows => users;
-
-  @override
-  DataGridRowAdapter buildRow(
-    DataGridRow row,
-  ) {
-    return DataGridRowAdapter(
-        cells: row.getCells().map<Widget>((e) {
-      return Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.all(8.0),
-        child: Text(e.value.toString()),
-      );
-    }).toList());
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+                width: MediaQuery.of(context).size.width / 1.2,
+                child: Image.asset("assets/inventory.png"))
+          ]),
+        ),
+      )),
+    );
   }
 }

@@ -1,6 +1,8 @@
+import 'dart:math';
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/user_provider.dart';
@@ -28,10 +30,35 @@ class FirestoreMethods {
         'First Name': firstname,
         'Gender': gender,
         'Last Name': lastname,
-        'Patient id': "ph${1003}",
+        'Patient id': "PH${Random().nextInt(1000)}",
         'Phone Number': phone,
         'status': "active",
-        'Date of Creation': DateTime.now()
+        'Date of Creation':
+            DateFormat('dd/MM/yyyy HH:mm:ss').format(DateTime.now())
+      });
+    } on FirebaseException catch (e) {
+      showSnackBar(context, e.message!);
+    }
+  }
+
+  Future<void> addVendor(
+      String companyName,
+      String contactPerson,
+      String phone,
+      String email,
+      String website,
+      String category,
+      BuildContext context) async {
+    final user = Provider.of<UserProvider>(context, listen: false);
+
+    try {
+      await _firestore.collection('Vendor_Management').doc().set({
+        'Company Name': companyName,
+        'Contact Person': contactPerson,
+        'Phone Number': phone,
+        'Email': email,
+        'Website': website,
+        'Category': category
       });
     } on FirebaseException catch (e) {
       showSnackBar(context, e.message!);
@@ -65,40 +92,6 @@ class FirestoreMethods {
       });
     } on FirebaseException catch (e) {
       showSnackBar(context, e.message!);
-    }
-  }
-
-  Future<void> updateViewCount(String id, bool isIncrease) async {
-    try {
-      await _firestore.collection('livestream').doc(id).update({
-        'viewers': FieldValue.increment(isIncrease ? 1 : -1),
-      });
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
-
-  Future<void> endLiveStream(String channelId) async {
-    try {
-      QuerySnapshot snap = await _firestore
-          .collection('livestream')
-          .doc(channelId)
-          .collection('comments')
-          .get();
-
-      for (int i = 0; i < snap.docs.length; i++) {
-        await _firestore
-            .collection('livestream')
-            .doc(channelId)
-            .collection('comments')
-            .doc(
-              ((snap.docs[i].data()! as dynamic)['commentId']),
-            )
-            .delete();
-      }
-      await _firestore.collection('livestream').doc(channelId).delete();
-    } catch (e) {
-      debugPrint(e.toString());
     }
   }
 }
